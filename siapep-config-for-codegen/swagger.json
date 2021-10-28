@@ -1,0 +1,84 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a Swagger generated doc for Free Mobile REST API.",
+    "version": "1.0.0",
+    "title": "Free Mobile REST",
+    "termsOfService": "",
+    "contact": {
+      "email": "security@free.fr"
+    }
+  },
+  "host": "smsapi.free-mobile.fr",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "sms",
+      "description": "Methods for sending sms",
+      "externalDocs": {
+        "description": "",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/sendmsg": {
+      "post": {
+        "tags": [
+          "sms"
+        ],
+        "summary": "Send a SMS to a user",
+        "description": "Send a SMS to a user thanks to his credentials",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "user",
+            "required": true,
+            "type": "string",
+            "description": "User of free mobile account"
+          },
+          {
+            "in": "query",
+            "name": "pass",
+            "required": true,
+            "type": "string",
+            "description": "Password of free mobile account"
+          },
+          {
+            "in": "query",
+            "name": "msg",
+            "required": true,
+            "type": "string",
+            "description": "Message to send (max length 999 caracters, above it will trigger 400 error)",
+            "maxLength": 999
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message sent successfully"
+          },
+          "400": {
+            "description": "Error : bad parameters or missing parameters"
+          },
+          "403": {
+            "description": "Bad credentials"
+          },
+          "500": {
+            "description": "Error : account is disabled"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "externalDocs": {
+    "description": "Find out more about Free",
+    "url": "http://free.fr"
+  }
+}
